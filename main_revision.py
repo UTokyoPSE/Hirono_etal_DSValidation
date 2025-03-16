@@ -6,7 +6,7 @@ Supplementary source code attached for the manuscript:
 "Determination and validation of a design space for mesenchymal stem cell cultivation processes using prediction intervals" by
 Keita Hirono, Yusuke Hayashi, Isuru A. Udugama, Mohamed Rami Gaddem, Kenjiro Tanaka, Yuto Takemoto, Ryuji Kato, Masahiro Kino-oka, Hirokazu Sugiyama
 
-Last saved on Jan 23 2025
+Last saved on Mar 16 2025
 
 
 Lines     : Functions                                         (Corresponding section)
@@ -428,9 +428,9 @@ if __name__ == '__main__':
                 for u in range(3):
                     if len(res[u]) > 2:
                         axes[g,u].errorbar(3*i, statistics.mean(res[u]), statistics.stdev(res[u]), capsize=6, fmt='o', markersize=8, ecolor='k', markeredgecolor='k', color='w')
-                    else:
-                        for v in range(len(res[u])):
-                            axes[g,u].scatter(3*i, res[u][v], s=70, ec='k', color='None')
+                    for v in range(len(res[u])):
+                        axes[g,u].scatter(3*i, res[u][v], s=50, ec='None', color='grey', alpha=len(res[u])**(-1/4))
+                        
             print('--> {}runs'.format(run))
     plt.show()
     

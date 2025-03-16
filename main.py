@@ -517,8 +517,9 @@ if __name__ == '__main__':
         
         y_mean = df_val_i.iloc[:,1:].mean(axis=1)
         y_std = df_val_i.iloc[:,1:].std(axis=1)
+        for j in range(len(df_val_i.columns) - 1):ax.scatter(df_val_i.loc[1:,['time']] / 24, df_val_i.iloc[1:,j+1], s=15 , color='grey', alpha=.5, ec='None')
         ax.errorbar(df_val_i.loc[1:,['time']] / 24, y_mean[1:], yerr=y_std[1:], capsize=3, fmt='o', markersize=4, ecolor='k', markeredgecolor='k', color='w')
-        ax.errorbar(df_val_i.loc[1:,['time']] / 24, y_mean[1:], yerr=y_std[1:], capsize=3, fmt='o', markersize=4, ecolor='k', markeredgecolor='k', color='w')
+        
         x_max = df_in['xmax'][0]
         epsilon = df_in['epsilon'][0]
         alpha = df_in['alpha'][0]
@@ -530,7 +531,6 @@ if __name__ == '__main__':
         y_ub = simu_grwoth(var, pi_dic[fit][1], para, dv)
         ax.plot([y_lb[-1][i] / 24 for i in range(len(y_lb[-1]))], [y_lb[0][i] * S for i in range(len(y_lb[0]))], c='b', linestyle='-')
         ax.plot([y_ub[-1][i] / 24 for i in range(len(y_ub[-1]))], [y_ub[0][i] * S for i in range(len(y_ub[0]))], c='g', linestyle='-')
-        
         plt.show()
             
     
