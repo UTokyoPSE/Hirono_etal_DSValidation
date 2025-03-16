@@ -6,7 +6,7 @@ Source code attached for the manuscript:
 "Determination and validation of a design space for mesenchymal stem cell cultivation processes using prediction intervals" by
 Keita Hirono, Yusuke Hayashi, Isuru A. Udugama, Mohamed Rami Gaddem, Kenjiro Tanaka, Yuto Takemoto, Ryuji Kato, Masahiro Kino-oka, Hirokazu Sugiyama
 
-Last saved on Jan 23 2025
+Last saved on Mar 16 2025
 
 
 Lines     : Functions                                       (Corresponding section)
@@ -185,11 +185,11 @@ def calc_error(k, df_F, df_IN, para, figs, graph=True, errorbar=True):
         
         fig, ax = plt.subplots(figsize=(5,5))
         set_axplt(ax, dv['day_passage'])             
+        for j in range(len(df_F.columns) - 1):ax.scatter(df_F.loc[1:,['time']] / 24, df_F.iloc[1:,j+1], s=15 , color='grey', alpha=.5, ec='None')
         ax.errorbar(df_F.loc[1:,['time']] / 24, y_mean[1:], yerr=y_std[1:], capsize=3, fmt='o', markersize=4, ecolor='k', markeredgecolor='k', color='w')
         ax.plot([y[-1][i] / 24 for i in range(len(y[-1]))], [y[0][i] * S for i in range(len(y[0]))], c=figs['color'], linestyle=figs['style'])
         ax.text(1, 12e+4, 'NRMSE = {}%'.format(round(error, 2)))
         plt.show()
-        
     return ss
 
 
@@ -518,7 +518,7 @@ if __name__ == '__main__':
         y_mean = df_val_i.iloc[:,1:].mean(axis=1)
         y_std = df_val_i.iloc[:,1:].std(axis=1)
         ax.errorbar(df_val_i.loc[1:,['time']] / 24, y_mean[1:], yerr=y_std[1:], capsize=3, fmt='o', markersize=4, ecolor='k', markeredgecolor='k', color='w')
-        
+        ax.errorbar(df_val_i.loc[1:,['time']] / 24, y_mean[1:], yerr=y_std[1:], capsize=3, fmt='o', markersize=4, ecolor='k', markeredgecolor='k', color='w')
         x_max = df_in['xmax'][0]
         epsilon = df_in['epsilon'][0]
         alpha = df_in['alpha'][0]
